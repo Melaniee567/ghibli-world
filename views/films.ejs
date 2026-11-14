@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghibli World | Films</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <%- include("partials/header") %>
+
+        <main>
+            <section class="films-section">
+
+                <h2>Studio Ghibli Films</h2>
+                <p>Explore movies created by Studio Ghibli.</p>
+
+                <div class="search-container">
+                    <input type="text" id="filmSearch" placeholder="Search for a Ghibli film..."
+                        aria-label="Search for a film">
+                </div>
+
+                <p id="noResults" style="display: none;">
+                    No films found. Please try another title.
+                </p>
+
+                <div class="films-container">
+
+                    <% films.forEach(film=> { %>
+
+                        <article class="film-card">
+
+                            <img src="<%= film.image %>" alt="<%= film.title %> poster" class="film-poster">
+
+                            <h3>
+                                <%= film.title %>
+                            </h3>
+
+                            <p>
+                                <strong>Original title:</strong>
+                                <%= film.original_title %>
+                            </p>
+
+                            <p>
+                                <strong>Director:</strong>
+                                <%= film.director %>
+                            </p>
+
+                            <p>
+                                <strong>Release year:</strong>
+                                <%= film.release_date %>
+                            </p>
+
+                            <p>
+                                <strong>Rating:</strong>
+                                <%= film.rt_score %>/100
+                            </p>
+
+                            <p class="film-description">
+                                <%= film.description %>
+                            </p>
+
+                        </article>
+
+                        <% }); %>
+
+                </div>
+
+            </section>
+        </main>
+
+        <%- include("partials/footer") %>
+
+            <script src="/js/filmSearch.js"></script>
+
+</body>
+
+</html>

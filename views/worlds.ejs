@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghibli Worlds | Ghibli World</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <%- include("partials/header") %>
+
+    <main>
+        <section class="worlds-intro">
+            <h2>Explore Magical Worlds</h2>
+            <p>
+                Discover the breathtaking worlds, unforgettable landscapes
+                and magical adventures of Studio Ghibli.
+            </p>
+        </section>
+
+        <section class="worlds-gallery">
+
+            <% films.forEach(film=> { %>
+
+                <article class="world-card">
+
+                    <img src="<%= film.movie_banner %>" alt="<%= film.title %> world" class="world-banner">
+
+                    <div class="world-content">
+                        <h3>
+                            <%= film.title %>
+                        </h3>
+
+                        <p>
+                            Original title: <%= film.original_title_romanised %>
+                        </p>
+
+                        <p>
+                            Producer: <%= film.producer %>
+                        </p>
+
+                        <span>
+                            Running time: <%= film.running_time %> minutes
+                        </span>
+                    </div>
+
+                </article>
+
+                <% }); %>
+
+        </section>
+
+    </main>
+
+    <%- include("partials/footer") %>
+
+</body>
+
+</html>

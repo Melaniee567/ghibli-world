@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghibli World | Characters</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <%- include("partials/header") %>
+
+    <main>
+        <section class="people-section">
+
+            <h2>Studio Ghibli Characters</h2>
+
+            <p>Meet the unforgettable characters of Studio Ghibli.</p>
+
+            <div class="people-container">
+
+                <% people.forEach(person=> { %>
+
+                    <article class="person-card">
+
+                        <h3>
+                            <%= person.name %>
+                        </h3>
+
+                        <p>
+                            <strong>Gender:</strong>
+                            <%= person.gender %>
+                        </p>
+
+                        <p>
+                            <strong>Age:</strong>
+                            <%= person.age %>
+                        </p>
+
+                        <p>
+                            <strong>Eye color:</strong>
+                            <%= person.eye_color %>
+                        </p>
+
+                        <p>
+                            <strong>Hair color:</strong>
+                            <%= person.hair_color %>
+                        </p>
+
+                    </article>
+
+                    <% }); %>
+
+            </div>
+
+        </section>
+    </main>
+
+    <%- include("partials/footer") %>
+
+</body>
+
+</html>

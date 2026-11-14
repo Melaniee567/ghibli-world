@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ghibli World | Studio Ghibli Movies</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <%- include("partials/header") %>
+
+    <main>
+        <section class="hero">
+
+            <img src="<%= featuredFilm.movie_banner %>" alt="<%= featuredFilm.title %> movie banner"
+                class="hero-banner">
+
+            <div class="hero-content">
+                <p class="hero-label">WELCOME TO THE WORLD OF GHIBLI</p>
+
+                <h2>Discover the Magic of Animation</h2>
+
+                <p>
+                    Explore unforgettable stories, magical worlds
+                    and beloved characters created by Studio Ghibli.
+                </p>
+
+                <p class="featured-title">
+                    Featured movie: <%= featuredFilm.title %>
+                </p>
+
+                <a href="/films" class="button">Explore Movies</a>
+            </div>
+
+        </section>
+
+        <section class="about">
+            <h2>About Studio Ghibli</h2>
+
+            <p>
+                Studio Ghibli is a famous Japanese animation studio
+                known for its imaginative stories, beautiful animation
+                and memorable characters.
+            </p>
+        </section>
+    </main>
+
+    <%- include("partials/footer") %>
+
+</body>
+
+</html>
