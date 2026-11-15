@@ -12,50 +12,76 @@
 
     <%- include("partials/header") %>
 
-    <main>
-        <section class="worlds-intro">
-            <h2>Explore Magical Worlds</h2>
-            <p>
-                Discover the breathtaking worlds, unforgettable landscapes
-                and magical adventures of Studio Ghibli.
-            </p>
-        </section>
+        <main>
+            <section class="worlds-intro">
+                <h2>Explore Magical Worlds</h2>
+                <p>
+                    Discover the breathtaking worlds, unforgettable landscapes
+                    and magical adventures of Studio Ghibli.
+                </p>
+            </section>
 
-        <section class="worlds-gallery">
+            <form action="/worlds" method="GET" class="search-container">
 
-            <% films.forEach(film=> { %>
+                <label for="worldSearch">Search for a Ghibli world</label>
 
-                <article class="world-card">
+                <input type="text" id="worldSearch" name="search" placeholder="Enter a film title..."
+                    value="<%= searchQuery || '' %>">
 
-                    <img src="<%= film.movie_banner %>" alt="<%= film.title %> world" class="world-banner">
+                <button type="submit" class="button">Search</button>
 
-                    <div class="world-content">
-                        <h3>
-                            <%= film.title %>
-                        </h3>
+            </form>
 
-                        <p>
-                            Original title: <%= film.original_title_romanised %>
-                        </p>
+            <% if (errorMessage) { %>
 
-                        <p>
-                            Producer: <%= film.producer %>
-                        </p>
+                <p class="error-message">
+                    <%= errorMessage %>
+                </p>
 
-                        <span>
-                            Running time: <%= film.running_time %> minutes
-                        </span>
-                    </div>
+                <% } else if (films.length===0) { %>
 
-                </article>
+                    <p class="no-results">
+                        No Ghibli worlds found. Please try another title.
+                    </p>
 
-                <% }); %>
+                    <% } %>
 
-        </section>
+                        <section class="worlds-gallery">
 
-    </main>
+                            <% films.forEach(film=> { %>
 
-    <%- include("partials/footer") %>
+                                <article class="world-card">
+
+                                    <img src="<%= film.movie_banner %>" alt="<%= film.title %> world"
+                                        class="world-banner">
+
+                                    <div class="world-content">
+                                        <h3>
+                                            <%= film.title %>
+                                        </h3>
+
+                                        <p>
+                                            Original title: <%= film.original_title_romanised %>
+                                        </p>
+
+                                        <p>
+                                            Producer: <%= film.producer %>
+                                        </p>
+
+                                        <span>
+                                            Running time: <%= film.running_time %> minutes
+                                        </span>
+                                    </div>
+
+                                </article>
+
+                                <% }); %>
+
+                        </section>
+
+        </main>
+
+        <%- include("partials/footer") %>
 
 </body>
 

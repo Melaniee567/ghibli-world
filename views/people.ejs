@@ -12,53 +12,73 @@
 
     <%- include("partials/header") %>
 
-    <main>
-        <section class="people-section">
+        <main>
+            <section class="people-section">
 
-            <h2>Studio Ghibli Characters</h2>
+                <h2>Studio Ghibli Characters</h2>
+                <p>Meet the unforgettable characters of Studio Ghibli.</p>
 
-            <p>Meet the unforgettable characters of Studio Ghibli.</p>
+                <form action="/people" method="GET" class="search-container">
+                    <label for="peopleSearch">Search for a Ghibli character</label>
 
-            <div class="people-container">
+                    <input type="text" id="peopleSearch" name="search" placeholder="Enter a character name..."
+                        value="<%= searchQuery || '' %>">
 
-                <% people.forEach(person=> { %>
+                    <button type="submit" class="button">Search</button>
+                </form>
 
-                    <article class="person-card">
+                <% if (errorMessage) { %>
 
-                        <h3>
-                            <%= person.name %>
-                        </h3>
+                    <p class="error-message">
+                        <%= errorMessage %>
+                    </p>
 
-                        <p>
-                            <strong>Gender:</strong>
-                            <%= person.gender %>
+                    <% } else if (people.length===0) { %>
+
+                        <p class="no-results">
+                            No characters found. Please try another name.
                         </p>
 
-                        <p>
-                            <strong>Age:</strong>
-                            <%= person.age %>
-                        </p>
+                        <% } %>
 
-                        <p>
-                            <strong>Eye color:</strong>
-                            <%= person.eye_color %>
-                        </p>
+                            <div class="people-container">
+                                <% people.forEach(person=> { %>
 
-                        <p>
-                            <strong>Hair color:</strong>
-                            <%= person.hair_color %>
-                        </p>
+                                    <article class="person-card">
 
-                    </article>
+                                        <h3>
+                                            <%= person.name %>
+                                        </h3>
 
-                    <% }); %>
+                                        <p>
+                                            <strong>Gender:</strong>
+                                            <%= person.gender %>
+                                        </p>
 
-            </div>
+                                        <p>
+                                            <strong>Age:</strong>
+                                            <%= person.age %>
+                                        </p>
 
-        </section>
-    </main>
+                                        <p>
+                                            <strong>Eye color:</strong>
+                                            <%= person.eye_color %>
+                                        </p>
 
-    <%- include("partials/footer") %>
+                                        <p>
+                                            <strong>Hair color:</strong>
+                                            <%= person.hair_color %>
+                                        </p>
+
+                                    </article>
+
+                                    <% }); %>
+                            </div>
+
+            </section>
+        </main>
+
+        <%- include("partials/footer") %>
 
 </body>
 

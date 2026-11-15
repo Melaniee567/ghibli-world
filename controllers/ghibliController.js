@@ -67,9 +67,46 @@ export async function showFilms(req, res, next) {
 // Display all Studio Ghibli characters
 export async function showPeople(req, res, next) {
     try {
-        const people = await getAllPeople();
+        // Get the raw search query from the URL
+        const rawSearch = req.query.search;
 
-        res.render("people", { people });
+        // Validate the search query
+        if (rawSearch !== undefined && typeof rawSearch !== "string") {
+            return res.status(400).render("people", {
+                people: [],
+                searchQuery: "",
+                errorMessage: "Invalid search request. Please try again."
+            });
+        }
+
+        // Remove unnecessary spaces
+        const searchQuery = (rawSearch || "").trim();
+
+        // Check the search query length
+        if (searchQuery.length > 100) {
+            return res.status(400).render("people", {
+                people: [],
+                searchQuery: "",
+                errorMessage: "Your search must be no longer than 100 characters."
+            });
+        }
+
+        // Get all characters from the API
+        const allPeople = await getAllPeople();
+
+        // Filter characters by name
+        const people = searchQuery
+            ? allPeople.filter(person =>
+                person.name.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            : allPeople;
+
+        // Render the people page
+        res.render("people", {
+            people,
+            searchQuery,
+            errorMessage: ""
+        });
 
     } catch (error) {
         next(error);
@@ -79,9 +116,46 @@ export async function showPeople(req, res, next) {
 // Display the Ghibli Worlds page
 export async function showWorlds(req, res, next) {
     try {
-        const films = await getAllFilms();
+        // Get the raw search query from the URL
+        const rawSearch = req.query.search;
 
-        res.render("worlds", { films });
+        // Validate the search query
+        if (rawSearch !== undefined && typeof rawSearch !== "string") {
+            return res.status(400).render("worlds", {
+                films: [],
+                searchQuery: "",
+                errorMessage: "Invalid search request. Please try again."
+            });
+        }
+
+        // Remove unnecessary spaces
+        const searchQuery = (rawSearch || "").trim();
+
+        // Check the search query length
+        if (searchQuery.length > 100) {
+            return res.status(400).render("worlds", {
+                films: [],
+                searchQuery: "",
+                errorMessage: "Your search must be no longer than 100 characters."
+            });
+        }
+
+        // Get all films from the API
+        const allFilms = await getAllFilms();
+
+        // Filter films by title
+        const films = searchQuery
+            ? allFilms.filter(film =>
+                film.title.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            : allFilms;
+
+        // Render the worlds page
+        res.render("worlds", {
+            films,
+            searchQuery,
+            errorMessage: ""
+        });
 
     } catch (error) {
         next(error);

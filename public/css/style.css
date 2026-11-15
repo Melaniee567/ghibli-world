@@ -388,12 +388,16 @@ footer {
     text-transform: uppercase;
 }
 
-/* FILM SEARCH */
+/* SEARCH */
 
 .search-container {
     max-width: 600px;
     margin: 20px auto 35px;
     padding: 0 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 #filmSearch {
@@ -409,7 +413,43 @@ footer {
     transition: all 0.3s ease;
 }
 
+#peopleSearch {
+    width: 100%;
+    padding: 16px 22px;
+    border: 2px solid #d9c69b;
+    border-radius: 30px;
+    background-color: #fffdf8;
+    color: #344536;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#worldSearch {
+    width: 100%;
+    padding: 16px 22px;
+    border: 2px solid #d9c69b;
+    border-radius: 30px;
+    background-color: #fffdf8;
+    color: #344536;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
 #filmSearch:focus {
+    border-color: #48694c;
+    box-shadow: 0 0 10px rgba(72, 105, 76, 0.2);
+}
+
+#peopleSearch:focus {
+    border-color: #48694c;
+    box-shadow: 0 0 10px rgba(72, 105, 76, 0.2);
+}
+
+#worldSearch:focus {
     border-color: #48694c;
     box-shadow: 0 0 10px rgba(72, 105, 76, 0.2);
 }
