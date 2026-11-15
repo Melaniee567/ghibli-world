@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import ghibliRoutes from "./routes/ghibliRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import { requestLogger } from "./middleware/requestLogger.js";
 
 // Create the Express application
 const app = express();
@@ -14,6 +15,12 @@ app.set("view engine", "ejs");
 
 // Set the folder for static files
 app.use(express.static("public"));
+
+// Parse form data sent from HTML forms
+app.use(express.urlencoded({ extended: true }));
+
+// Log incoming requests
+app.use(requestLogger);
 
 // Use Ghibli website routes
 app.use("/", ghibliRoutes);

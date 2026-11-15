@@ -18,63 +18,78 @@
                 <h2>Studio Ghibli Films</h2>
                 <p>Explore movies created by Studio Ghibli.</p>
 
-                <div class="search-container">
-                    <input type="text" id="filmSearch" placeholder="Search for a Ghibli film..."
-                        aria-label="Search for a film">
-                </div>
+                <form action="/films" method="GET" class="search-container">
 
-                <p id="noResults" style="display: none;">
-                    No films found. Please try another title.
-                </p>
+                    <label for="filmSearch">Search for a Ghibli film</label>
 
-                <div class="films-container">
+                    <input type="text" id="filmSearch" name="search" placeholder="Enter a film title..."
+                        value="<%= searchQuery || '' %>">
 
-                    <% films.forEach(film=> { %>
+                    <button type="submit" class="button">Search</button>
 
-                        <article class="film-card">
+                </form>
 
-                            <img src="<%= film.image %>" alt="<%= film.title %> poster" class="film-poster">
+                <% if (errorMessage) { %>
 
-                            <h3>
-                                <%= film.title %>
-                            </h3>
+                    <p class="error-message">
+                        <%= errorMessage %>
+                    </p>
 
-                            <p>
-                                <strong>Original title:</strong>
-                                <%= film.original_title %>
-                            </p>
+                    <% } else if (films.length===0) { %>
 
-                            <p>
-                                <strong>Director:</strong>
-                                <%= film.director %>
-                            </p>
+                        <p class="no-results">
+                            No films found. Please try another title.
+                        </p>
 
-                            <p>
-                                <strong>Release year:</strong>
-                                <%= film.release_date %>
-                            </p>
+                        <% } %>
 
-                            <p>
-                                <strong>Rating:</strong>
-                                <%= film.rt_score %>/100
-                            </p>
 
-                            <p class="film-description">
-                                <%= film.description %>
-                            </p>
+                            <div class="films-container">
 
-                        </article>
+                                <% films.forEach(film=> { %>
 
-                        <% }); %>
+                                    <article class="film-card">
 
-                </div>
+                                        <img src="<%= film.image %>" alt="<%= film.title %> poster" class="film-poster">
+
+                                        <h3>
+                                            <%= film.title %>
+                                        </h3>
+
+                                        <p>
+                                            <strong>Original title:</strong>
+                                            <%= film.original_title %>
+                                        </p>
+
+                                        <p>
+                                            <strong>Director:</strong>
+                                            <%= film.director %>
+                                        </p>
+
+                                        <p>
+                                            <strong>Release year:</strong>
+                                            <%= film.release_date %>
+                                        </p>
+
+                                        <p>
+                                            <strong>Rating:</strong>
+                                            <%= film.rt_score %>/100
+                                        </p>
+
+                                        <p class="film-description">
+                                            <%= film.description %>
+                                        </p>
+
+                                    </article>
+
+                                    <% }); %>
+
+                            </div>
 
             </section>
         </main>
 
         <%- include("partials/footer") %>
-
-            <script src="/js/filmSearch.js"></script>
 
 </body>
 

@@ -18,9 +18,46 @@ export async function showHomePage(req, res, next) {
 // Display all Studio Ghibli films
 export async function showFilms(req, res, next) {
     try {
-        const films = await getAllFilms();
+        // Get the raw search query from the URL
+        const rawSearch = req.query.search;
 
-        res.render("films", { films });
+        // Validate the search query before calling the API
+        if (rawSearch !== undefined && typeof rawSearch !== "string") {
+            return res.status(400).render("films", {
+                films: [],
+                searchQuery: "",
+                errorMessage: "Invalid search request. Please try again."
+            });
+        }
+
+        // Remove unnecessary spaces
+        const searchQuery = (rawSearch || "").trim();
+
+        // Check that the search query is not too long
+        if (searchQuery.length > 100) {
+            return res.status(400).render("films", {
+                films: [],
+                searchQuery: "",
+                errorMessage: "Your search must be no longer than 100 characters."
+            });
+        }
+
+        // Get all films from the API
+        const allFilms = await getAllFilms();
+
+        // Filter films by title
+        const films = searchQuery
+            ? allFilms.filter(film =>
+                film.title.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            : allFilms;
+
+        // Render the films page
+        res.render("films", {
+            films,
+            searchQuery,
+            errorMessage: ""
+        });
 
     } catch (error) {
         next(error);
