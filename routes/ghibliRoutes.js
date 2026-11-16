@@ -24,5 +24,10 @@ router.get("/people", showPeople);
 // Worlds page
 router.get("/worlds", showWorlds);
 
+// Temporary route for testing the 500 error page
+router.get("/test-error", (req, res, next) => {
+    next(new Error("This is a test server error."));
+});
+
 // Export the router
 export default router;

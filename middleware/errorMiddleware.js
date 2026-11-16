@@ -13,15 +13,18 @@ export function errorHandler(error, req, res, next) {
         ? 500
         : res.statusCode;
 
-    console.error("Application error:", error.message);
+    console.error("Application error:", {
+        message: error.message,
+        statusCode: statusCode,
+        url: req.originalUrl,
+        method: req.method
+    });
 
     // Display a custom 404 page
     if (statusCode === 404) {
         return res.status(404).render("404");
     }
 
-    // Display a general error message
-    res.status(statusCode).send(
-        "Something went wrong. Please try again later."
-    );
+    // Display a general error page
+    return res.status(statusCode).render("500");
 }

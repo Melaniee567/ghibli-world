@@ -11,6 +11,11 @@ body {
     background-color: #f6f3e9;
     color: #344536;
     line-height: 1.7;
+
+    /* Keep the footer at the bottom of the page */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* HEADER */
@@ -78,6 +83,7 @@ main {
     max-width: 1100px;
     margin: 0 auto;
     padding: 40px 20px;
+    flex: 1;
 }
 
 /* HERO SECTION */
@@ -470,4 +476,10 @@ footer {
     border: 1px solid #d9c69b;
     border-radius: 14px;
     font-size: 15px;
+}
+
+/* ERROR PAGE */
+
+.error-content .button {
+    margin-top: 20px;
 }
