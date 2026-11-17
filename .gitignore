@@ -6,3 +6,6 @@ node_modules/
 
 # Debug logs
 npm-debug.log*
+
+# AI Declaration (kept locally, not uploaded to GitHub)
+AI_Declaration.md
