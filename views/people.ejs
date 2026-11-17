@@ -46,29 +46,34 @@
 
                                     <article class="person-card">
 
-                                        <h3>
-                                            <%= person.name %>
-                                        </h3>
+                                        <% if (person.image) { %>
+                                            <img src="<%= person.image %>" alt="<%= person.name %>"
+                                                class="person-image">
+                                            <% } %>
 
-                                        <p>
-                                            <strong>Gender:</strong>
-                                            <%= person.gender %>
-                                        </p>
+                                                <h3>
+                                                    <%= person.name %>
+                                                </h3>
 
-                                        <p>
-                                            <strong>Age:</strong>
-                                            <%= person.age %>
-                                        </p>
+                                                <p>
+                                                    <strong>Gender:</strong>
+                                                    <%= person.gender %>
+                                                </p>
 
-                                        <p>
-                                            <strong>Eye color:</strong>
-                                            <%= person.eye_color %>
-                                        </p>
+                                                <p>
+                                                    <strong>Age:</strong>
+                                                    <%= person.age %>
+                                                </p>
 
-                                        <p>
-                                            <strong>Hair color:</strong>
-                                            <%= person.hair_color %>
-                                        </p>
+                                                <p>
+                                                    <strong>Eye color:</strong>
+                                                    <%= person.eye_color %>
+                                                </p>
+
+                                                <p>
+                                                    <strong>Hair color:</strong>
+                                                    <%= person.hair_color %>
+                                                </p>
 
                                     </article>
 

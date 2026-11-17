@@ -483,3 +483,89 @@ footer {
 .error-content .button {
     margin-top: 20px;
 }
+
+
+/* PEOPLE / CHARACTERS PAGE */
+
+.people-section {
+    text-align: center;
+}
+
+.people-section h2 {
+    font-size: 34px;
+    color: #294936;
+    margin-bottom: 15px;
+}
+
+.people-section > p {
+    color: #596453;
+    margin-bottom: 20px;
+}
+
+/* CHARACTERS GRID */
+
+.people-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 30px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+/* CHARACTER CARD */
+
+.person-card {
+    background-color: #fffdf8;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    padding: 25px;
+}
+
+.person-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.person-card h3 {
+    color: #294936;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* CHARACTER IMAGES */
+
+.person-image {
+    width: 100%;
+    height: 260px;
+    object-fit: contain;
+    background-color: #f3f0e8;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.person-card p {
+    color: #596453;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+/* MOBILE CHARACTER CARDS */
+
+@media (max-width: 600px) {
+    .people-section h2 {
+        font-size: 27px;
+    }
+
+    .people-container {
+        grid-template-columns: 1fr;
+        padding: 20px 0;
+        gap: 20px;
+    }
+}
