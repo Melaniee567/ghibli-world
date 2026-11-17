@@ -1,7 +1,6 @@
-// Import functions from the model
 import { getAllFilms, getAllPeople } from "../models/ghibliModel.js";
 
-// Display the home page
+// Display the Home Page
 export async function showHomePage(req, res, next) {
     try {
         const films = await getAllFilms();
@@ -15,13 +14,11 @@ export async function showHomePage(req, res, next) {
     }
 }
 
-// Display all Studio Ghibli films
+// Display all Studio Ghibli movies
 export async function showFilms(req, res, next) {
     try {
-        // Get the raw search query from the URL
         const rawSearch = req.query.search;
-
-        // Validate the search query before calling the API
+        
         if (rawSearch !== undefined && typeof rawSearch !== "string") {
             return res.status(400).render("films", {
                 films: [],
@@ -30,10 +27,8 @@ export async function showFilms(req, res, next) {
             });
         }
 
-        // Remove unnecessary spaces
         const searchQuery = (rawSearch || "").trim();
 
-        // Check that the search query is not too long
         if (searchQuery.length > 100) {
             return res.status(400).render("films", {
                 films: [],
@@ -42,17 +37,14 @@ export async function showFilms(req, res, next) {
             });
         }
 
-        // Get all films from the API
         const allFilms = await getAllFilms();
 
-        // Filter films by title
         const films = searchQuery
             ? allFilms.filter(film =>
                 film.title.toLowerCase().includes(searchQuery.toLowerCase())
             )
             : allFilms;
 
-        // Render the films page
         res.render("films", {
             films,
             searchQuery,
@@ -67,10 +59,8 @@ export async function showFilms(req, res, next) {
 // Display all Studio Ghibli characters
 export async function showPeople(req, res, next) {
     try {
-        // Get the raw search query from the URL
         const rawSearch = req.query.search;
 
-        // Validate the search query
         if (rawSearch !== undefined && typeof rawSearch !== "string") {
             return res.status(400).render("people", {
                 people: [],
@@ -79,10 +69,8 @@ export async function showPeople(req, res, next) {
             });
         }
 
-        // Remove unnecessary spaces
         const searchQuery = (rawSearch || "").trim();
 
-        // Check the search query length
         if (searchQuery.length > 100) {
             return res.status(400).render("people", {
                 people: [],
@@ -91,17 +79,14 @@ export async function showPeople(req, res, next) {
             });
         }
 
-        // Get all characters from the API
         const allPeople = await getAllPeople();
 
-        // Filter characters by name
         const people = searchQuery
             ? allPeople.filter(person =>
                 person.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
             : allPeople;
 
-        // Render the people page
         res.render("people", {
             people,
             searchQuery,
@@ -116,10 +101,8 @@ export async function showPeople(req, res, next) {
 // Display the Ghibli Worlds page
 export async function showWorlds(req, res, next) {
     try {
-        // Get the raw search query from the URL
         const rawSearch = req.query.search;
 
-        // Validate the search query
         if (rawSearch !== undefined && typeof rawSearch !== "string") {
             return res.status(400).render("worlds", {
                 films: [],
@@ -128,10 +111,8 @@ export async function showWorlds(req, res, next) {
             });
         }
 
-        // Remove unnecessary spaces
         const searchQuery = (rawSearch || "").trim();
 
-        // Check the search query length
         if (searchQuery.length > 100) {
             return res.status(400).render("worlds", {
                 films: [],
@@ -140,17 +121,14 @@ export async function showWorlds(req, res, next) {
             });
         }
 
-        // Get all films from the API
         const allFilms = await getAllFilms();
 
-        // Filter films by title
         const films = searchQuery
             ? allFilms.filter(film =>
                 film.title.toLowerCase().includes(searchQuery.toLowerCase())
             )
             : allFilms;
 
-        // Render the worlds page
         res.render("worlds", {
             films,
             searchQuery,
